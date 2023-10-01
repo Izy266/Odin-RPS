@@ -35,7 +35,6 @@ function game() {
     console.log(rpsChoices.length);
     rpsChoices.forEach((choice) => {
         choice.addEventListener('click', () => {
-
             const playerChoice = choice.id;
             let body = document.querySelector("body");
             resultSection = document.querySelector("#result");
@@ -47,6 +46,7 @@ function game() {
             resultSection.textContent = result[0];
             pscoreSection.textContent = `Your Score: ${playerScore}`;
             cscoreSection.textContent = `Computer Score: ${compScore}`;
+            
             if ((playerScore == 5 || compScore == 5) && !won) {
                 won = true;
                 const winResult = document.createElement('div');
@@ -62,6 +62,11 @@ function game() {
                     tryAgain.remove();
                     playerScore = 0;
                     compScore = 0;
+                    resultSection.textContent = "";
+                    const BREAK = document.createElement('br');
+                    resultSection.appendChild(BREAK)
+                    pscoreSection.textContent = `Your Score: ${playerScore}`;
+                    cscoreSection.textContent = `Computer Score: ${compScore}`;
                 });
 
                 body.appendChild(winResult);
@@ -70,6 +75,7 @@ function game() {
         });
     });
 }
+
 
 let playerScore = 0;
 let compScore = 0;
